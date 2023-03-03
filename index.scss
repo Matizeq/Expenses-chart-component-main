@@ -1,0 +1,215 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap");
+
+$Soft_red: hsl(10, 79%, 65%);
+$Hover_red: hsl(10, 80%, 73%);
+$Cyan: hsl(186, 34%, 60%);
+$Hover_cyan: hsl(187, 32%, 74%);
+$Dark_brown: hsl(25, 47%, 15%);
+$Medium_brown: hsl(28, 10%, 53%);
+$Cream: hsl(27, 66%, 92%);
+$Very_pale_orange: hsl(33, 100%, 98%);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@mixin days($height, $position, $count) {
+  .day--#{$count} {
+    height: $height;
+    .day--name {
+      left: $position;
+    }
+  }
+}
+
+body {
+  height: 100vh;
+  background-color: $Cream;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "DM Sans", sans-serif;
+}
+
+section {
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  header {
+    background-color: $Soft_red;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    .top {
+      li {
+        list-style: none;
+        color: $Very_pale_orange;
+        line-height: 1.6;
+        font-size: 15px;
+      }
+      li:nth-child(2) {
+        font-weight: bold;
+        font-size: 24px;
+      }
+    }
+    .wheel {
+      width: 40px;
+      height: 40px;
+      background-color: $Dark_brown;
+      border-radius: 50px;
+      margin-top: auto;
+      margin-bottom: auto;
+      position: relative;
+      .circle {
+        width: 40px;
+        height: 40px;
+        border: 2px solid $Very_pale_orange;
+        border-radius: 50px;
+        position: absolute;
+        left: -20px;
+      }
+    }
+  }
+  main {
+    background-color: $Very_pale_orange;
+    padding: 20px;
+    border-radius: 10px;
+    h1 {
+      margin-bottom: 40px;
+      font-family: "DM Sans", sans-serif;
+      font-size: 22px;
+    }
+    .pillar--container {
+      height: 100px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 40px;
+      .day {
+        background-color: $Soft_red;
+        width: 35px;
+        border-radius: 5px;
+        position: relative;
+        text-align: start;
+      }
+      .day:hover {
+        background-color: $Hover_red;
+      }
+      .day:nth-child(3) {
+        background-color: $Cyan;
+      }
+      .day:nth-child(3):hover {
+        background-color: $Hover_cyan;
+      }
+      .day--name {
+        position: absolute;
+        bottom: -20px;
+        font-size: 12px;
+        color: $Medium_brown;
+      }
+      @include days(35%, 6px, 0);
+      @include days(65%, 8px, 1);
+      @include days(100%, 6px, 2);
+      @include days(55%, 8px, 3);
+      @include days(45%, 12px, 4);
+      @include days(75%, 10px, 5);
+      @include days(50%, 7px, 6);
+    }
+    .line {
+      width: 100%;
+      height: 2px;
+      background-color: $Cream;
+      margin-bottom: 20px;
+    }
+    .main-list {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      font-family: "DM Sans", sans-serif;
+      .first-main-list {
+        width: 50%;
+        ul {
+          list-style: none;
+          li:nth-child(1) {
+            font-size: 14px;
+          }
+          li:nth-child(2) {
+            font-size: 28px;
+            font-weight: bold;
+          }
+        }
+      }
+      .second-main-list {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
+        ul {
+          list-style: none;
+          li:nth-child(1) {
+            font-size: 14px;
+            font-weight: bold;
+            text-align: end;
+          }
+          li:nth-child(2) {
+            font-size: 16px;
+            font-weight: 400;
+          }
+        }
+      }
+    }
+  }
+}
+
+.tooltip {
+  position: absolute;
+  width: 50px;
+  padding: 5px;
+  transform: translateY(-130%);
+  border-radius: 3px;
+  background-color: $Dark_brown;
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+  left: -8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "DM Sans", sans-serif;
+  font-weight: bold;
+}
+
+@media (max-width: 375px) {
+  section {
+    width: 320px;
+    main {
+      .pillar--container {
+        height: 130px;
+        margin-bottom: 50px;
+        .day {
+          width: 30px;
+          border-radius: 3px;
+        }
+        .day--name {
+          bottom: -25px;
+        }
+        @include days(35%, 4px, 0);
+        @include days(65%, 6px, 1);
+        @include days(100%, 4px, 2);
+        @include days(55%, 6px, 3);
+        @include days(45%, 9px, 4);
+        @include days(75%, 7px, 5);
+        @include days(50%, 5px, 6);
+      }
+    }
+    .tooltip {
+      left: -10px;
+    }
+  }
+}
